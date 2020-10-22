@@ -13,21 +13,21 @@ var resetPressed = true;
 
 
 init();
-
+//starting point 
 function init(){
 	setupModeButtons();
 	setupSquares();
-	var lsScore = localStorage.getItem('score');
+	var lsScore = sessionStorage.getItem('score');
 	if( lsScore !== null ){
 		score = lsScore; 
 		scoreDisplay.textContent = score;
 	}
 	else {
-		localStorage.setItem('score', score); 
+		sessionStorage.setItem('score', score); 
 	}
 	reset();
 }
-
+//deals with buttons 
 function setupModeButtons(){
 	for(var i = 0; i < modeButtons.length; i++){
 		modeButtons[i].addEventListener("click", function(){
@@ -39,7 +39,7 @@ function setupModeButtons(){
 		});
 	}
 }
-
+//deals with squares 
 function setupSquares(){
 	for(var i = 0; i < squares.length; i++){
 	//add click listeners to squares
@@ -59,13 +59,13 @@ function setupSquares(){
 					resetPressed = false;
 				}
 				scoreDisplay.textContent = score;
-				localStorage.setItem('score', score);
+				sessionStorage.setItem('score', score);
 			} else {
 				this.style.background = "#232323";
 				messageDisplay.textContent = "Try Again"
 				score--;
 				scoreDisplay.textContent = score; 
-				localStorage.setItem('score', score);
+				sessionStorage.setItem('score', score);
 			}
 		});
 	}
